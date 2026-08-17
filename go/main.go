@@ -16,5 +16,16 @@ func main() {
 		fmt.Printf("MAC Address: %v\n", ifi.HardwareAddr)
 		fmt.Printf("MTU: %v\n", ifi.MTU)
 		fmt.Printf("Flags: %v\n", ifi.Flags)
+
+		addrs, err := ifi.Addrs()
+		if err != nil {
+			fmt.Printf(" Error getting addresses: %v\n", err)
+			continue
+		}
+
+		for _, addr := range addrs {
+			fmt.Printf(" Address: %s\n", addr.String())
+		}
+		fmt.Println()
 	}
 }
